@@ -2,6 +2,7 @@ package ir.mosi.airlinereservationsystem.rest_controller;
 
 import ir.mosi.airlinereservationsystem.entity.Passenger;
 import ir.mosi.airlinereservationsystem.exception.DuplicatePassengerException;
+import ir.mosi.airlinereservationsystem.exception.PassengerNotFoundException;
 import ir.mosi.airlinereservationsystem.service.PassengerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class PassengerRestController {
     public @ResponseBody
     CompletableFuture<ResponseEntity> findAllPassengers() {
         return passengerService.findAll().<ResponseEntity>thenApply(ResponseEntity::ok)
-                .exceptionally(handleFindPassengerFailure);
+                .exceptionally(handleFindPassengersFailure);
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -41,10 +42,20 @@ public class PassengerRestController {
         }
     }
 
-    
+    @RequestMapping(value = "update", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public @ResponseBody
+    ResponseEntity<Passenger> updatePassenger(@RequestBody Passenger passenger) throws PassengerNotFoundException, ExecutionException, InterruptedException {
 
-    private static Function<Throwable, ResponseEntity<? extends List<Passenger>>> handleFindPassengerFailure = throwable -> {
-        //LOGGER.error("Failed to read passenger records: {}");
+        try {
+            CompletableFuture<Passenger> updatedPassenger = passengerService.update(passenger);
+            return ResponseEntity.ok(updatedPassenger.get());
+        } catch (PassengerNotFoundException e) {
+            throw new PassengerNotFoundException();
+        }
+    }
+
+    private static Function<Throwable, ResponseEntity<? extends List<Passenger>>> handleFindPassengersFailure = throwable -> {
+        //LOGGER.error("Failed to read passengers records: {}");
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     };
 

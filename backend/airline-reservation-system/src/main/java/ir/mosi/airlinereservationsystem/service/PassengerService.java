@@ -2,6 +2,7 @@ package ir.mosi.airlinereservationsystem.service;
 
 import ir.mosi.airlinereservationsystem.entity.Passenger;
 import ir.mosi.airlinereservationsystem.exception.DuplicatePassengerException;
+import ir.mosi.airlinereservationsystem.exception.PassengerNotFoundException;
 import ir.mosi.airlinereservationsystem.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -33,11 +34,25 @@ public class PassengerService {
         if (passengerInDB.get().size() == 0)
             passengerRepository.save(passenger);
         else
-            throw new DuplicatePassengerException("Passenger already exist with id : "+passengerInDB.get().get(0).getId());
+            throw new DuplicatePassengerException("Passenger already exist with id : " + passengerInDB.get().get(0).getId());
 
         return CompletableFuture.completedFuture(passenger);
     }
 
+    @Async
+    public CompletableFuture<Passenger> update(Passenger passenger) throws ExecutionException, InterruptedException, PassengerNotFoundException {
+        CompletableFuture<List<Passenger>> passengerForUpdate = findByName(passenger.getName());
+
+        if (passengerForUpdate.get().size() == 1) {
+            passengerForUpdate.get().get(0).setName(passenger.getName());
+            passengerRepository.save(passengerForUpdate.get().get(0));
+            return CompletableFuture.completedFuture(passenger);
+        } else {
+            throw new PassengerNotFoundException();
+        }
+    }
+
+    @Async
     public CompletableFuture<List<Passenger>> findByName(String name) {
         final List<Passenger> passengers = passengerRepository.findByName(name);
         return CompletableFuture.completedFuture(passengers);

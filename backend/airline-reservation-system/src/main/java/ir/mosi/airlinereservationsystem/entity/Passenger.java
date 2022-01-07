@@ -11,11 +11,13 @@ public class Passenger {
     @Column(name = "id", nullable = false)
     private Long Id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
 
     public Passenger() {
     }
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
 
     public Passenger(String name) {
         this.name = name;
