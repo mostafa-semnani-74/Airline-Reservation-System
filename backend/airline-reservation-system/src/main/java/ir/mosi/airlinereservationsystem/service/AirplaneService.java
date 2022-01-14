@@ -15,8 +15,11 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class AirplaneService {
 
-    @Autowired
-    private AirplaneRepository airplaneRepository;
+    private final AirplaneRepository airplaneRepository;
+
+    public AirplaneService(AirplaneRepository airplaneRepository) {
+        this.airplaneRepository = airplaneRepository;
+    }
 
     @Async
     public CompletableFuture<List<Airplane>> findAll() {
