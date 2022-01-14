@@ -1,4 +1,4 @@
-package ir.mosi.airlinereservationsystem.entity;
+package ir.mosi.airline_reservation_system.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

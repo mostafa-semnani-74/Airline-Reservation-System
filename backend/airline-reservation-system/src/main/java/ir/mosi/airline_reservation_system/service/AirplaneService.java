@@ -1,10 +1,9 @@
-package ir.mosi.airlinereservationsystem.service;
+package ir.mosi.airline_reservation_system.service;
 
-import ir.mosi.airlinereservationsystem.entity.Airplane;
-import ir.mosi.airlinereservationsystem.exception.AirplaneNotFoundException;
-import ir.mosi.airlinereservationsystem.exception.DuplicateAirplaneException;
-import ir.mosi.airlinereservationsystem.repository.AirplaneRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import ir.mosi.airline_reservation_system.entity.Airplane;
+import ir.mosi.airline_reservation_system.exception.AirplaneNotFoundException;
+import ir.mosi.airline_reservation_system.exception.DuplicateAirplaneException;
+import ir.mosi.airline_reservation_system.repository.AirplaneRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 

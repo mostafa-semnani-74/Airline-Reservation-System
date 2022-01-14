@@ -1,4 +1,4 @@
-package ir.mosi.airlinereservationsystem.exception;
+package ir.mosi.airline_reservation_system.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

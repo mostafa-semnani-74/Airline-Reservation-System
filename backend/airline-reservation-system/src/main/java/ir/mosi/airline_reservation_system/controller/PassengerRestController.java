@@ -1,10 +1,10 @@
-package ir.mosi.airlinereservationsystem.rest_controller;
+package ir.mosi.airline_reservation_system.controller;
 
 import io.swagger.annotations.Api;
-import ir.mosi.airlinereservationsystem.entity.Passenger;
-import ir.mosi.airlinereservationsystem.exception.DuplicatePassengerException;
-import ir.mosi.airlinereservationsystem.exception.PassengerNotFoundException;
-import ir.mosi.airlinereservationsystem.service.PassengerService;
+import ir.mosi.airline_reservation_system.entity.Passenger;
+import ir.mosi.airline_reservation_system.exception.DuplicatePassengerException;
+import ir.mosi.airline_reservation_system.exception.PassengerNotFoundException;
+import ir.mosi.airline_reservation_system.service.PassengerService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,6 @@ import java.util.function.Function;
 @Api(value = "PassengerRestController")
 public class PassengerRestController {
 
-
     private final PassengerService passengerService;
 
     public PassengerRestController(PassengerService passengerService) {
@@ -35,14 +34,15 @@ public class PassengerRestController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<Passenger> createPassenger(@Valid  @RequestBody Passenger passenger) throws DuplicatePassengerException, InterruptedException, ExecutionException {
+    public ResponseEntity<Passenger> createPassenger(@Valid @RequestBody Passenger passenger)
+            throws DuplicatePassengerException, InterruptedException, ExecutionException {
         CompletableFuture<Passenger> createdPassenger = passengerService.create(passenger);
         return ResponseEntity.ok(createdPassenger.get());
-
     }
 
     @PutMapping(value = "/update")
-    public ResponseEntity<Passenger> updatePassenger(@Valid @RequestBody Passenger passenger) throws PassengerNotFoundException, ExecutionException, InterruptedException {
+    public ResponseEntity<Passenger> updatePassenger(@Valid @RequestBody Passenger passenger)
+            throws PassengerNotFoundException, ExecutionException, InterruptedException {
         CompletableFuture<Passenger> updatedPassenger = passengerService.update(passenger);
         return ResponseEntity.ok(updatedPassenger.get());
     }
