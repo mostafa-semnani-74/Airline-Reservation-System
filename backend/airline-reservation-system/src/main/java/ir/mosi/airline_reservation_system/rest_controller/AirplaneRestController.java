@@ -1,5 +1,6 @@
 package ir.mosi.airlinereservationsystem.rest_controller;
 
+import io.swagger.annotations.Api;
 import ir.mosi.airlinereservationsystem.entity.Airplane;
 import ir.mosi.airlinereservationsystem.exception.AirplaneNotFoundException;
 import ir.mosi.airlinereservationsystem.exception.DuplicateAirplaneException;
@@ -17,6 +18,7 @@ import java.util.function.Function;
 
 @RestController
 @RequestMapping("/rest/api/airplane")
+@Api(value = "AirplaneRestController")
 public class AirplaneRestController {
 
     private final AirplaneService airplaneService;

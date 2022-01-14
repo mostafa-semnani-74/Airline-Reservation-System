@@ -1,6 +1,7 @@
 package ir.mosi.airlinereservationsystem.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "passenger")
@@ -15,6 +16,7 @@ public class Passenger {
     public Passenger() {
     }
 
+    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 

@@ -4,7 +4,6 @@ import ir.mosi.airlinereservationsystem.entity.Passenger;
 import ir.mosi.airlinereservationsystem.exception.DuplicatePassengerException;
 import ir.mosi.airlinereservationsystem.exception.PassengerNotFoundException;
 import ir.mosi.airlinereservationsystem.repository.PassengerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,11 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class PassengerService {
 
-    @Autowired
-    private PassengerRepository passengerRepository;
+    private final PassengerRepository passengerRepository;
+
+    public PassengerService(PassengerRepository passengerRepository) {
+        this.passengerRepository = passengerRepository;
+    }
 
     @Async
     public CompletableFuture<List<Passenger>> findAll() {
