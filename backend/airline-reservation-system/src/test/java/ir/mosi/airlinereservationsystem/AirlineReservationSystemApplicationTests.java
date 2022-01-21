@@ -1,4 +1,4 @@
-package ir.mosi.airline_reservation_system;
+package ir.mosi.airlinereservationsystem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

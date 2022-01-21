@@ -1,10 +1,10 @@
-package ir.mosi.airline_reservation_system.controller;
+package ir.mosi.airlinereservationsystem.controller;
 
 import io.swagger.annotations.Api;
-import ir.mosi.airline_reservation_system.entity.Airplane;
-import ir.mosi.airline_reservation_system.exception.AirplaneNotFoundException;
-import ir.mosi.airline_reservation_system.exception.DuplicateAirplaneException;
-import ir.mosi.airline_reservation_system.service.AirplaneService;
+import ir.mosi.airlinereservationsystem.entity.Airplane;
+import ir.mosi.airlinereservationsystem.exception.AirplaneNotFoundException;
+import ir.mosi.airlinereservationsystem.exception.DuplicateAirplaneException;
+import ir.mosi.airlinereservationsystem.service.AirplaneService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
-
 
 @RestController
 @RequestMapping("/rest/api/airplane")
@@ -34,13 +33,15 @@ public class AirplaneRestController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Airplane> createAirplane(@Valid @RequestBody Airplane airplane) throws InterruptedException, ExecutionException, DuplicateAirplaneException {
+    public ResponseEntity<Airplane> createAirplane(@Valid @RequestBody Airplane airplane)
+            throws InterruptedException, ExecutionException, DuplicateAirplaneException {
         CompletableFuture<Airplane> createdAirplane = airplaneService.create(airplane);
         return ResponseEntity.ok(createdAirplane.get());
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Airplane> updateAirplane(@Valid @RequestBody Airplane airplane) throws ExecutionException, InterruptedException, AirplaneNotFoundException {
+    public ResponseEntity<Airplane> updateAirplane(@Valid @RequestBody Airplane airplane)
+            throws ExecutionException, InterruptedException, AirplaneNotFoundException {
         CompletableFuture<Airplane> updatedAirplane = airplaneService.update(airplane);
         return ResponseEntity.ok(updatedAirplane.get());
     }

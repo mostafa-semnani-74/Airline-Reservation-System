@@ -1,4 +1,4 @@
-package ir.mosi.airline_reservation_system;
+package ir.mosi.airlinereservationsystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

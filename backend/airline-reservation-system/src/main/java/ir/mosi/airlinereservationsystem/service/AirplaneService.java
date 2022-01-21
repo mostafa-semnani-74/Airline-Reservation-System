@@ -1,9 +1,9 @@
-package ir.mosi.airline_reservation_system.service;
+package ir.mosi.airlinereservationsystem.service;
 
-import ir.mosi.airline_reservation_system.entity.Airplane;
-import ir.mosi.airline_reservation_system.exception.AirplaneNotFoundException;
-import ir.mosi.airline_reservation_system.exception.DuplicateAirplaneException;
-import ir.mosi.airline_reservation_system.repository.AirplaneRepository;
+import ir.mosi.airlinereservationsystem.entity.Airplane;
+import ir.mosi.airlinereservationsystem.exception.AirplaneNotFoundException;
+import ir.mosi.airlinereservationsystem.exception.DuplicateAirplaneException;
+import ir.mosi.airlinereservationsystem.repository.AirplaneRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +48,7 @@ public class AirplaneService {
             airplaneRepository.save(airplaneForUpdate.get().get(0));
             return CompletableFuture.completedFuture(airplane);
         } else {
-            throw new AirplaneNotFoundException();
+            throw new AirplaneNotFoundException("Airplane not found");
         }
     }
 

@@ -1,6 +1,6 @@
-package ir.mosi.airline_reservation_system.repository;
+package ir.mosi.airlinereservationsystem.repository;
 
-import ir.mosi.airline_reservation_system.entity.Passenger;
+import ir.mosi.airlinereservationsystem.entity.Passenger;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,10 +1,10 @@
-package ir.mosi.airline_reservation_system.controller;
+package ir.mosi.airlinereservationsystem.controller;
 
 import io.swagger.annotations.Api;
-import ir.mosi.airline_reservation_system.entity.Passenger;
-import ir.mosi.airline_reservation_system.exception.DuplicatePassengerException;
-import ir.mosi.airline_reservation_system.exception.PassengerNotFoundException;
-import ir.mosi.airline_reservation_system.service.PassengerService;
+import ir.mosi.airlinereservationsystem.entity.Passenger;
+import ir.mosi.airlinereservationsystem.exception.DuplicatePassengerException;
+import ir.mosi.airlinereservationsystem.exception.PassengerNotFoundException;
+import ir.mosi.airlinereservationsystem.service.PassengerService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package ir.mosi.airline_reservation_system.config;
+package ir.mosi.airlinereservationsystem.config;
 
 import com.google.common.base.Predicate;
 import org.springframework.context.annotation.Bean;

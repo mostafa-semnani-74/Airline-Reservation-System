@@ -1,9 +1,9 @@
-package ir.mosi.airline_reservation_system.service;
+package ir.mosi.airlinereservationsystem.service;
 
-import ir.mosi.airline_reservation_system.entity.Passenger;
-import ir.mosi.airline_reservation_system.exception.DuplicatePassengerException;
-import ir.mosi.airline_reservation_system.exception.PassengerNotFoundException;
-import ir.mosi.airline_reservation_system.repository.PassengerRepository;
+import ir.mosi.airlinereservationsystem.entity.Passenger;
+import ir.mosi.airlinereservationsystem.exception.DuplicatePassengerException;
+import ir.mosi.airlinereservationsystem.exception.PassengerNotFoundException;
+import ir.mosi.airlinereservationsystem.repository.PassengerRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +50,7 @@ public class PassengerService {
             passengerRepository.save(passengerForUpdate.get().get(0));
             return CompletableFuture.completedFuture(passenger);
         } else {
-            throw new PassengerNotFoundException();
+            throw new PassengerNotFoundException("Passenger not found");
         }
     }
 
